@@ -3,9 +3,9 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import game.Criatura;
-import game.EfeitoStatus;
-import game.TipoElemental;
+import model.Criatura;
+import model.EfeitoStatus;
+import model.TipoElemental;
 
 class CriaturaTest {
 

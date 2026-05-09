@@ -7,9 +7,9 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/200031540/Downloads/MazeWars/Mockito/byte-buddy-1.14.17.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/200031540/Downloads/MazeWars/Mockito/byte-buddy-agent-1.14.17.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/200031540/Downloads/MazeWars/Mockito/mockito-core-5.19.0.jar"/>
-	<classpathentry exported="true" kind="lib" path="C:/Users/200031540/Downloads/MazeWars/Mockito/mockito-junit-jupiter-5.11.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/200031540/Downloads/Mockito/byte-buddy-1.14.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/200031540/Downloads/Mockito/byte-buddy-agent-1.14.17.jar"/>
+	<classpathentry kind="lib" path="C:/Users/200031540/Downloads/Mockito/mockito-core-5.19.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/200031540/Downloads/Mockito/mockito-junit-jupiter-5.11.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

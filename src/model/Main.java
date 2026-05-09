@@ -1,4 +1,8 @@
-package game;
+package model;
+
+import service.BatalhaService;
+import service.GerenciadorEfeitos;
+import service.RegistroBatalhaInterface;
 
 public class Main {
 	public static void main(String[] args) {

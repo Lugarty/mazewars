@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import game.Criatura;
-import game.EfeitoStatus;
-import game.GerenciadorEfeitos;
-import game.RegistroBatalhaInterface;
-import game.TipoElemental;
+import model.Criatura;
+import model.EfeitoStatus;
+import model.TipoElemental;
+import service.GerenciadorEfeitos;
+import service.RegistroBatalhaInterface;
 
 class GerenciadorEfeitosTest {
 

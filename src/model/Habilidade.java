@@ -1,4 +1,4 @@
-package game;
+package model;
 
 public class Habilidade {
 	private String nome;

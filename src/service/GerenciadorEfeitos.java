@@ -1,4 +1,7 @@
-package game;
+package service;
+
+import model.Criatura;
+import model.EfeitoStatus;
 
 public class GerenciadorEfeitos {
 	public void processarEfeitos(Criatura criatura, RegistroBatalhaInterface registro) {

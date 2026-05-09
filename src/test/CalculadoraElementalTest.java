@@ -2,10 +2,10 @@ package test;
 
 import org.junit.jupiter.api.Test;
 
-import game.CalculadoraElemental;
-import game.Criatura;
-import game.Habilidade;
-import game.TipoElemental;
+import model.Criatura;
+import model.Habilidade;
+import model.TipoElemental;
+import service.CalculadoraElemental;
 
 import static org.junit.jupiter.api.Assertions.*;
 

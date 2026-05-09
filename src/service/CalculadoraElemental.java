@@ -1,4 +1,8 @@
-package game;
+package service;
+
+import model.Criatura;
+import model.Habilidade;
+import model.TipoElemental;
 
 public class CalculadoraElemental {
 	public static double calcularMultiplicador(TipoElemental ataque, TipoElemental defesa) {

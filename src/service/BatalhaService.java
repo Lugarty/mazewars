@@ -1,4 +1,8 @@
-package game;
+package service;
+
+import model.Criatura;
+import model.EfeitoStatus;
+import model.Habilidade;
 
 public class BatalhaService {
 	private RegistroBatalhaInterface registro;
