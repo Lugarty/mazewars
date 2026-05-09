@@ -1,6 +1,6 @@
 # 🔥 MazeWars
 
-![Java](https://img.shields.io/badge/Java-17-orange?logo=java)
+![Java](https://img.shields.io/badge/Java-21-orange?logo=java)
 ![JUnit](https://img.shields.io/badge/JUnit-5-green?logo=junit5)
 ![Mockito](https://img.shields.io/badge/Mockito-5.19.0-blue?logo=mockito)
 
