@@ -64,6 +64,7 @@ void deveRegistrarBatalhaAoFinalizar() {
     // ... executa batalha ...
     verify(mockRegistro, times(1)).registrar(any());
 }
+```java
 
 📦 MazeWars
  ┣ 📂 src
