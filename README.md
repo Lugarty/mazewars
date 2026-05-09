@@ -66,7 +66,7 @@ void deveRegistrarBatalhaAoFinalizar() {
 }
 ```
 
-
+```java
 📦 MazeWars
  ┣ 📂 src
  ┃ ┣ 📂 model                 # Entidades do jogo
@@ -91,7 +91,9 @@ void deveRegistrarBatalhaAoFinalizar() {
  ┣ 📄 .classpath
  ┣ 📄 .project
  ┗ 📄 README.md
+```
 
- 👥 Desenvolvedor
-🌟 Nome	📧 Contato
-Anisio Oliveira Albuquerque Filho	anisioalbuquerque71@gmail.com
+## 👥 Desenvolvedor
+
+### 🌟 Nome	| 📧 Contato
+- Anisio Oliveira Albuquerque Filho	| anisioalbuquerque71@gmail.com
