@@ -4,7 +4,7 @@
 ![JUnit](https://img.shields.io/badge/JUnit-5-green?logo=junit5)
 ![Mockito](https://img.shields.io/badge/Mockito-5.19.0-blue?logo=mockito)
 
-> ⚔️ Um simulador de batalha de criaturas místicas por turnos, desenvolvido em Java com testes unitários (JUnit) e mocks inteligentes (Mockito). Projeto da disciplina de Qualidade e Testes de Software.
+> ⚔️ Um simulador de batalha de criaturas místicas por turnos, desenvolvido em Java com testes unitários (JUnit) e mocks inteligentes (Mockito).
 
 ---
 
