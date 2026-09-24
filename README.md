@@ -1,99 +1,146 @@
-# 🔥 MazeWars
+# MazeWars
 
-![Java](https://img.shields.io/badge/Java-21-orange?logo=java)
-![JUnit](https://img.shields.io/badge/JUnit-5-green?logo=junit5)
-![Mockito](https://img.shields.io/badge/Mockito-5.19.0-blue?logo=mockito)
+![Java](https://img.shields.io/badge/Java-21-orange?logo=openjdk)
+![JUnit](https://img.shields.io/badge/JUnit-5-25A162?logo=junit5)
+![Mockito](https://img.shields.io/badge/Mockito-5.19.0-blue)
 
-> ⚔️ Um simulador de batalha de criaturas místicas por turnos, desenvolvido em Java com testes unitários (JUnit) e mocks inteligentes (Mockito).
+Projeto em Java para modelar um sistema de batalha por turnos com criaturas, tipos elementais, habilidades, efeitos de status e testes automatizados.
 
----
+O foco principal é **regra de negócio + testes**, com separação entre entidades de domínio e serviços responsáveis pela batalha, cálculo elemental e processamento de efeitos.
 
-## ✨ Diferenciais
+## O que este projeto demonstra
 
-- 🔁 **6 tipos elementais com relação de vantagem circular** – cada elemento interage de forma única com os demais, indo muito além do clássico "pedra-papel-tesoura".
-- 🔥❄️ **Habilidades especiais com efeitos de status** – queimaduras, congelamentos, veneno e cura adicionam camadas táticas a cada turno.
-- ⚡ **Sistema de iniciativa por velocidade** – o turno não é fixo; criaturas mais rápidas atacam primeiro.
-- 🎒 **Inventário de itens utilizáveis** – poções, buffs e outros itens podem virar o jogo durante o combate.
-- 🧪 **Cobertura completa de testes** – testes unitários com JUnit e mocks com Mockito para isolar dependências (ex: registro de batalha) e cobrir cenários complexos.
+- modelagem de domínio em Java;
+- separação entre `model` e `service`;
+- uso de interfaces para desacoplar registro de batalha;
+- injeção de dependências por construtor;
+- testes unitários com **JUnit 5**;
+- uso de **Mockito** para isolar colaboradores;
+- validação de comportamento, não apenas de valores estáticos.
 
----
+## Estrutura
 
-## 🎯 Público-Alvo
+```text
+src/
+├── model/
+│   ├── Criatura.java
+│   ├── EfeitoStatus.java
+│   ├── Habilidade.java
+│   ├── Item.java
+│   ├── Main.java
+│   └── TipoElemental.java
+├── service/
+│   ├── BatalhaService.java
+│   ├── CalculadoraElemental.java
+│   ├── GerenciadorEfeitos.java
+│   └── RegistroBatalhaInterface.java
+└── test/
+    ├── BatalhaServiceTest.java
+    ├── CalculadoraElementalTest.java
+    ├── CriaturaTest.java
+    └── GerenciadorEfeitosTest.java
+```
 
-- 🎲 Jogadores fãs de RPG tático e estratégia por turnos.
-- 💻 Desenvolvedores(as) e estudantes de testes de software que buscam um exemplo prático de automação com JUnit + Mockito.
-- 🧠 Qualquer pessoa que curta duelos de criaturas e sistemas elementais profundos.
+## Regras implementadas
 
----
+### Ordem de ação
 
-## 🎮 Exemplo de Gameplay
+A criatura com maior velocidade age primeiro em cada turno.
 
-1. **Apresentação das criaturas** – cada jogador escolhe seu combatente (ex: 🐉 Dragão de Fogo vs. 🌊 Elemental da Água).
-2. **Cálculo de iniciativa** – a criatura com maior velocidade abre o duelo.
-3. **Turno do atacante**:
-   - Pode usar uma **habilidade especial** (ex: *Lança-chamas*) ou um **item** (ex: *Poção de Cura*).
-   - O dano é calculado com base no ATK, DEF e na **vantagem elemental**.
-4. **Aplicação de efeitos** – se a habilidade causar um status (🔥 queimado, ☠️ envenenado), ele é aplicado imediatamente.
-5. **Efeitos entre turnos** – dano por veneno/queimadura é processado automaticamente.
-6. **Alternância de turno** até que uma criatura chegue a HP ≤ 0.
-7. **Vitória/Derrota** – o vencedor é declarado e a partida é registrada.
+### Dano elemental
 
----
+O cálculo de dano considera atacante, alvo, habilidade e o relacionamento entre tipos elementais.
 
-## 🧪 Demonstração Técnica (JUnit + Mockito)
+### Efeitos de status
 
-### Classes testadas
-- `CriaturaTest`
-- `CalculadoraElementalTest`
-- `BatalhaServiceTest`
-- `GerenciadorEfeitosTest`
+O projeto modela efeitos temporários, incluindo cenários em que uma criatura pode morrer por efeito antes de agir.
 
-### Uso de Mockito
-Simulamos dependências complexas, como:
-- 📋 **Registrador de batalhas** (`RegistroBatalhaInterface`) – verificamos a geração de logs sem um banco de dados real.
-- ☠️ **Efeitos de status** – mock do `GerenciadorEfeitos` para isolar o comportamento do veneno.
-- ⚖️ **Cálculo de dano elemental** – testamos vantagens sem precisar criar todas as combinações.
+### Bloqueio de ação
 
-**Exemplo de teste com mock:**
+Criaturas afetadas por determinados estados podem ficar impossibilitadas de agir naquele turno.
+
+### Itens
+
+As criaturas possuem inventário e podem receber itens como cura ou buff. A estrutura de itens faz parte do domínio, embora o fluxo principal de `BatalhaService` atualmente priorize habilidades e efeitos.
+
+## Testes
+
+Os testes exercitam cenários como:
+
+- criatura mais rápida atacando primeiro;
+- batalha encerrada quando uma criatura morre por efeito;
+- criatura congelada sem executar ação;
+- cálculo elemental;
+- comportamento de efeitos;
+- estado e regras das criaturas.
+
+### Exemplo de uso de Mockito
+
 ```java
-@Test
-@DisplayName("Deve chamar o registro ao finalizar uma batalha")
-void deveRegistrarBatalhaAoFinalizar() {
-    RegistroBatalhaInterface mockRegistro = mock(RegistroBatalhaInterface.class);
-    BatalhaService service = new BatalhaService(mockRegistro);
-    // ... executa batalha ...
-    verify(mockRegistro, times(1)).registrar(any());
+@Mock
+private RegistroBatalhaInterface registro;
+
+@Mock
+private GerenciadorEfeitos gerenciadorEfeitos;
+
+@BeforeEach
+void setup() {
+    MockitoAnnotations.openMocks(this);
+    batalhaService = new BatalhaService(registro, gerenciadorEfeitos);
 }
 ```
 
-```java
-📦 MazeWars
- ┣ 📂 src
- ┃ ┣ 📂 model                 # Entidades do jogo
- ┃ ┃ ┣ 📜 Criatura.java
- ┃ ┃ ┣ 📜 EfeitoStatus.java
- ┃ ┃ ┣ 📜 Habilidade.java
- ┃ ┃ ┣ 📜 Item.java
- ┃ ┃ ┣ 📜 Main.java
- ┃ ┃ ┗ 📜 TipoElemental.java
- ┃ ┣ 📂 service               # Lógica de batalha e cálculos
- ┃ ┃ ┣ 📜 BatalhaService.java
- ┃ ┃ ┣ 📜 CalculadoraElemental.java
- ┃ ┃ ┣ 📜 GerenciadorEfeitos.java
- ┃ ┃ ┗ 📜 RegistroBatalhaInterface.java
- ┃ ┗ 📂 test                  # Testes unitários
- ┃   ┣ 📜 BatalhaServiceTest.java
- ┃   ┣ 📜 CalculadoraElementalTest.java
- ┃   ┣ 📜 CriaturaTest.java
- ┃   ┗ 📜 GerenciadorEfeitosTest.java
- ┣ 📂 Mockito                 # JARs do Mockito
- ┣ 📂 bin                     # Classes compiladas
- ┣ 📄 .classpath
- ┣ 📄 .project
- ┗ 📄 README.md
-```
+Isso permite testar `BatalhaService` isoladamente, controlando o comportamento de efeitos e verificando interações com o registrador.
 
-## 👥 Desenvolvedor
+## Decisões de design
 
-### 🌟 Nome	| 📧 Contato
-- Anisio Oliveira Albuquerque Filho	| anisioalbuquerque71@gmail.com
+### Interface para registro
+
+`RegistroBatalhaInterface` evita que o serviço de batalha dependa diretamente de uma implementação específica de log/persistência.
+
+### Gerenciador de efeitos separado
+
+O processamento de efeitos fica fora de `BatalhaService`, permitindo testar essa responsabilidade isoladamente.
+
+### Serviço de batalha como orquestrador
+
+`BatalhaService` coordena:
+
+1. processamento de efeitos;
+2. verificação de vida;
+3. definição da ordem por velocidade;
+4. execução da habilidade;
+5. aplicação de efeitos;
+6. registro do estado da batalha.
+
+## Como executar
+
+O projeto está estruturado como projeto Java/Eclipse e inclui as bibliotecas do Mockito no repositório.
+
+Para executar em uma IDE:
+
+1. importe o projeto Java;
+2. configure JUnit 5 no classpath;
+3. execute `model.Main` para o fluxo de demonstração;
+4. execute as classes em `src/test` para os testes.
+
+## Limitações atuais
+
+- não há sistema de build padronizado com Maven ou Gradle;
+- os JARs do Mockito estão versionados no repositório;
+- o fluxo principal ainda não usa todas as possibilidades da classe `Item`;
+- não há persistência real do histórico de batalhas;
+- não há interface gráfica.
+
+## Próximos passos
+
+- migrar dependências para Maven ou Gradle;
+- remover binários/JARs versionados desnecessariamente;
+- expandir o uso de itens durante a batalha;
+- aumentar a cobertura de casos limite;
+- adicionar persistência opcional para histórico de batalhas.
+
+## Autor
+
+**Anísio Oliveira Albuquerque Filho**  
+GitHub: [@Lugarty](https://github.com/Lugarty)
