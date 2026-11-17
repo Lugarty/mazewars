@@ -22,23 +22,33 @@ MazeWars models battles between creatures with elemental types, abilities, statu
 ## Tech Stack
 
 - Java 21
+- Apache Maven
 - JUnit 5
 - Mockito
-- Eclipse project metadata
 
 ## Getting Started
 
-This repository is currently set up as an Eclipse Java project. It does not include a Maven or Gradle build file.
+Requirements: JDK 21 and Maven 3.9 or later.
 
-1. Import the repository into Eclipse as an existing Java project.
-2. Confirm that JUnit 5 is available on the project build path.
-3. The Mockito dependency JARs are stored in the `Mockito/` directory and referenced by the project configuration.
-4. Run `model.Main` for the demonstration.
-5. Run the test classes under `src/test/` from the IDE.
+Run the test suite:
+
+```bash
+mvn test
+```
+
+Run the demonstration after compiling:
+
+```bash
+mvn package
+java -cp target/classes model.Main
+```
+
+In an IDE, import the repository as an existing Maven project so dependencies are resolved from `pom.xml`.
 
 ## Project Structure
 
 ```text
+pom.xml
 src/
 ├── model/      # Creatures, abilities, items, and elemental types
 ├── service/    # Battle, elemental damage, and status-effect services
@@ -47,8 +57,6 @@ src/
 
 ## Current Limitations
 
-- No Maven or Gradle build has been added yet.
-- Mockito JARs are committed to the repository.
 - Battle history is not persisted.
 - The project has no graphical interface.
 - Item and inventory classes are not yet integrated into the main battle flow.
