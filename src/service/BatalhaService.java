@@ -45,7 +45,7 @@ public class BatalhaService {
 				if (!agente.getHabilidades().isEmpty()) {
 					Habilidade hab = agente.getHabilidades().get(0);
 					int dano = CalculadoraElemental.calcularDano(agente, alvo, hab);
-					alvo.receberDano(dano);
+					alvo.receberDanoCalculado(dano);
 					registro.registrar(agente.getNome() + " usou " + hab.getNome() + " em " + alvo.getNome()
 							+ " causando " + dano + " de dano.");
 
