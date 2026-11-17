@@ -85,10 +85,11 @@ public class Criatura {
 	}
 
 	public void receberDano(int dano) {
-		int danoFinal = Math.max(0, dano - def);
-		hp -= danoFinal;
-		if (hp < 0)
-			hp = 0;
+		receberDanoCalculado(dano - def);
+	}
+
+	public void receberDanoCalculado(int dano) {
+		hp = Math.max(0, hp - Math.max(0, dano));
 	}
 
 	public void curar(int quantidade) {
