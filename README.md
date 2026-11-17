@@ -59,7 +59,6 @@ src/
 
 - Battle history is not persisted.
 - The project has no graphical interface.
-- Item and inventory classes are not yet integrated into the main battle flow.
 
 ## Project Status and License
 
