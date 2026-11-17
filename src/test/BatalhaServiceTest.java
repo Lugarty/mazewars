@@ -48,6 +48,22 @@ class BatalhaServiceTest {
 	}
 
 	@Test
+	void testCalculatedAttackDamageIsNotReducedByDefenseTwice() {
+		Criatura atacante = new Criatura("A", 100, 20, 0, 10, TipoElemental.FOGO);
+		atacante.adicionarHabilidade(new Habilidade("Fire", TipoElemental.FOGO, 10, null, 0));
+		Criatura defensor = new Criatura("B", 37, 1, 5, 1, TipoElemental.AR);
+		defensor.adicionarHabilidade(new Habilidade("Air", TipoElemental.AR, 1, null, 0));
+
+		doNothing().when(gerenciadorEfeitos).processarEfeitos(any(Criatura.class), eq(registro));
+
+		Criatura vencedor = batalhaService.iniciarBatalha(atacante, defensor);
+
+		assertFalse(defensor.estaVivo());
+		assertEquals(atacante, vencedor);
+		verify(registro).registrar(contains("causando 37 de dano"));
+	}
+
+	@Test
 	void testBatalhaTerminaQuandoUmMorrePorEfeito() {
 		Criatura a = new Criatura("A", 50, 30, 5, 8, TipoElemental.FOGO);
 		a.adicionarHabilidade(new Habilidade("Fogo", TipoElemental.FOGO, 20, null, 0));
